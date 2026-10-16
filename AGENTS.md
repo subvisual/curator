@@ -20,7 +20,7 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md). Clear requests to store or incorporat
 
 Keep originals byte-preserved with provenance; label extracts, translations, renderings, notes, and transcripts accurately. Maintain English explanations with one home per topic and nearby sources. Keep generated deliverables outside this repository. During artifact work, hand explicit capture requests to a separate documentation workflow using only relevant information, attribution, and context; do not claim an automatic new chat was created unless it was.
 
-If PR submission is unavailable, disclose it and give a concrete handoff: current statement/source, proposed change, evidence, unresolved questions, and related proposal if known. Cowork PR support remains unverified. Do not silently substitute Claude Code, install mandatory skills, or build a connector/backend to fill the gap.
+If PR submission is unavailable, disclose it and give a concrete handoff: current statement/source, proposed change, evidence, unresolved questions, and related proposal if known. Cowork contribution is verified for the specific [folder and host-credential route](docs/cowork-setup.md); verify access in the current environment. Do not silently substitute Claude Code, install mandatory skills, or build a connector/backend to fill the gap.
 
 ## Review and maintenance
 
