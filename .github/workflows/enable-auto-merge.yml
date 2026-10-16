@@ -1,0 +1,42 @@
+name: Enable native auto-merge
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review, edited]
+permissions: {}
+concurrency:
+  group: curator-auto-merge-${{ github.event.number }}
+  cancel-in-progress: true
+jobs:
+  enable:
+    # Setup must verify protections before enabling this repository variable.
+    if: vars.CURATOR_AUTOMERGE_ENABLED == 'true' && !github.event.pull_request.draft
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge without merging or approving
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr=$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER")
+          if ! jq -e '.state == "open" and .draft == false and .base.ref == "main"' <<< "$pr" >/dev/null; then
+            echo "PR is not an open, ready proposal to main."
+            exit 0
+          fi
+          if jq -e '.auto_merge != null' <<< "$pr" >/dev/null; then
+            echo "Native auto-merge is already enabled."
+            exit 0
+          fi
+          node_id=$(jq -r '.node_id' <<< "$pr")
+          head_sha=$(jq -r '.head.sha' <<< "$pr")
+          # This mutation only enables GitHub's native mechanism. It cannot approve,
+          # bypass checks, or directly merge an unprotected PR as gh pr merge could.
+          gh api graphql -f query='mutation($id: ID!, $head: GitObjectID!) { enablePullRequestAutoMerge(input: {pullRequestId: $id, expectedHeadOid: $head, mergeMethod: SQUASH}) { pullRequest { number autoMergeRequest { enabledAt } } } }' -f id="$node_id" -f head="$head_sha"
+          gh api "repos/$REPOSITORY/pulls/$PR_NUMBER" --jq '{number, merged, auto_merge}'

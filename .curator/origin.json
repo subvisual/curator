@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "kind": "starter",
+  "release": "unreleased",
+  "source_repository": "https://github.com/subvisual/curator",
+  "source_commit": null,
+  "adoptions": []
+}
