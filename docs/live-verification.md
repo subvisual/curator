@@ -1,5 +1,7 @@
 # Temporary live validation fixture
 
-This deliberately invalid test fixture must not merge.
+Status: template
 
-[Deliberately missing target](missing-live-check-target.md)
+This test fixture must not merge. It exercises the live checks only.
+
+[Existing topic index](index.md)

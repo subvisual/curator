@@ -1,0 +1,16 @@
+{
+  "status": "evidence",
+  "origin": "Synthetic fixture created for owner-authorized live validator verification in subvisual/curator PR 1; not project knowledge",
+  "date": "2026-10-16",
+  "attribution": "Codex, acting on the repository owner request",
+  "source_type": "verification",
+  "original": "note.txt",
+  "files": [
+    {
+      "path": "note.txt",
+      "role": "original"
+    }
+  ],
+  "locator": "Complete one-line fixture",
+  "limitations": "Temporary test input only; must not merge."
+}
