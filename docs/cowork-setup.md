@@ -55,4 +55,4 @@ The PR body's generated Claude Code footer does not identify the execution route
 
 Still unverified: reuse/update of an existing PR through this folder route, refresh after accepted main advances, and independent local Claude Code CLI instruction/read/contribution behavior. The CLI was logged out at the last check. Automatic instruction import remains unsupported in this observed folder flow; keep the explicit bootstrap and verify again after relevant environment changes.
 
-This record changes no review policy or GitHub settings. [PR #3](https://github.com/subvisual/curator/pull/3) separately proposes the team-review documentation update; its unmerged text is not treated as accepted main here. Keep that governance change independently reviewable.
+This record changes no review policy or GitHub settings. The team-review policy was adopted separately in [PR #3](https://github.com/subvisual/curator/pull/3). The verification observations above describe the earlier test revision; they are not a claim that the tests were repeated after the governance update.
