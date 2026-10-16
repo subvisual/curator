@@ -40,19 +40,36 @@ For a separately authorized capability test, use a disposable Markdown fixture m
 
 ## Verification record
 
-Observed by Codex while operating the owner's isolated Claude desktop Cowork project on 16 October 2026; command execution was performed by the Cowork agent. This is a documented verification, not a verbatim transcript. The tested accepted revision was `e4192e5a040185efb383d329f68175d9c7c92a45` in `subvisual/curator`.
+Observed by Codex while operating the owner's isolated Claude desktop Cowork project on 16 October 2026; command execution was performed by the Cowork agent. This is a documented verification, not a verbatim transcript. The initial tests used accepted revision `e4192e5a040185efb383d329f68175d9c7c92a45` in `subvisual/curator`. A subsequent read-only refresh test on the same date used `d3c51dff314ef7e4ce279ac636fc4b497691a4e9`, after PRs #3 and #5 merged. Results are distinguished below.
 
 | Capability | Observed result and scope |
 | --- | --- |
 | Local reads | Cowork read repository instructions and relevant files through the attached checkout on the host. |
 | Instruction loading | Saved project bootstrap loaded automatically in a fresh session; AGENTS.md was subsequently read explicitly. The staged CLAUDE.md import did not expand. |
-| Freshness | Repeated remote-main resolution matched local HEAD. Cowork distinguished unmerged PR #3 from accepted main and disclosed the possible conflict between old docs and live settings. No advancing-main scenario was exercised. |
+| Initial freshness | Repeated remote-main resolution matched local HEAD at `e4192e5`. Cowork distinguished then-unmerged PR #3 from accepted main and disclosed the possible conflict between old docs and live settings. |
+| Advanced-main refresh | In the same isolated session, Cowork independently resolved remote main as `d3c51df`, compared it with the clean local main checkout, detected advancement from `e4192e5`, and explicitly read the updated files at that revision. The commit was already available locally; fetching a missing commit was not tested. |
 | Contribution | [Test PR #4](https://github.com/subvisual/curator/pull/4) was created from the local folder through Desktop Commander and host credentials. Head `19f9de2a02e38fa9c9f0a422b2b9c1016c32fe58` added only a seven-line disposable template. |
 | Live checks and boundary | [GitHub Actions run](https://github.com/subvisual/curator/actions/runs/38928927315) passed all three required statuses. Codex independently verified draft state, review required, no auto-merge request and unchanged main. This was not a test of successful approved auto-merge. |
 | Cleanup | PR #4 closed unmerged; remote/local test branches deleted; checkout returned clean to main. No existing drafts were modified. |
 
 The PR body's generated Claude Code footer does not identify the execution route: the observed contribution used Cowork's host connector. A separate cloud attachment test in PR #2 is not evidence for folder behavior.
 
-Still unverified: reuse/update of an existing PR through this folder route, refresh after accepted main advances, and independent local Claude Code CLI instruction/read/contribution behavior. The CLI was logged out at the last check. Automatic instruction import remains unsupported in this observed folder flow; keep the explicit bootstrap and verify again after relevant environment changes.
+### Read-only refresh after publication
 
-This record changes no review policy or GitHub settings. The team-review policy was adopted separately in [PR #3](https://github.com/subvisual/curator/pull/3). The verification observations above describe the earlier test revision; they are not a claim that the tests were repeated after the governance update.
+On 16 October 2026, Codex requested a read-only readiness check in the existing isolated Cowork session after [PR #3](https://github.com/subvisual/curator/pull/3) and [PR #5](https://github.com/subvisual/curator/pull/5) merged. The contribution-test write exception had ended. Codex observed Cowork's host-tool activity and answer, and independently checked remote main and the local checkout at the same revision.
+
+Cowork resolved `d3c51dff314ef7e4ce279ac636fc4b497691a4e9` with a live `git ls-remote` query, compared it with local HEAD, and reported a clean checkout on main. It explicitly read AGENTS.md, CLAUDE.md, README.md, docs/index.md and docs/cowork-setup.md at that revision, and inspected the governance/setup changes since `e4192e5`. Its answer correctly described eligibility for any invited team member with accepted write-or-higher access, independent human approval, removal of the primary/backup roles, and the documented Cowork host contribution route. It did not reuse the old policy as current accepted knowledge.
+
+The saved project bootstrap remained available. Cowork reported that the staged CLAUDE.md snapshot was no longer present in its supplied context; the repository content came from explicit reads. This is evidence of detecting and reading a newer accepted revision through the bootstrap, not automatic startup import expansion or background synchronization.
+
+Codex had already fast-forwarded the local checkout before this test. Cowork did not fetch or pull, so retrieving a remote commit absent locally remains untested. Neither the refresh test nor this note update changes review rules or extends the earlier merge exceptions. The refresh performed no repository writes or GitHub changes and left existing drafts untouched.
+
+### Remaining limitations
+
+- Fetching an accepted commit that is missing from the local checkout has not been verified through Cowork.
+- Reuse/update of an existing PR through the folder route remains untested.
+- Local Claude Code CLI instruction, read and contribution behavior remains independently unverified; the CLI was logged out at the readiness check.
+- The normal independent-human-approval and auto-merge path has not been demonstrated end to end. PRs #3 and #5 used an explicitly authorized one-time owner exception, not independent human approval.
+- Automatic AGENTS.md import expansion was not observed; keep the saved bootstrap and explicit reads. Results are specific to the tested account and environment, not all Cowork accounts or versions.
+
+The original contribution test and later refresh cover different revisions and capabilities; neither proves universal or unattended synchronization. Reverify after relevant environment changes. This record changes no review policy or GitHub settings.
